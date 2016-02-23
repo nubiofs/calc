@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd">
+
+	<!-- Para a integração entre a implementação JAX-RS 1.1 com a Bean Validation. 
+		Ativando um Interceptor do Demoiselle REST em todos os métodos anotados com 
+		@ValidatePayload -->
+	<interceptors>
+		<class>br.gov.frameworkdemoiselle.util.ValidatePayloadInterceptor</class>
+	</interceptors>
+	
+</beans>
