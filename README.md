@@ -20,5 +20,9 @@ No eclipse -> Configure -> Convert to Maven Project
 
 (M1C2: SERVIÇO SOMA) ==> "M1C2"
 
+(M1C3: PLAYLOAD) ==> "M1C3"
+
+(M1C4: AJAX) ==> "M1C4"
+
 Obs.: Mudar "???" após terminar o módulo M?C? 
 
