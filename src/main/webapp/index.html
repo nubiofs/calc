@@ -3,14 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Calc</title>
+<style>
+	.required {
+    	border-color: red;
+	}
+	.msgErro {
+		background-color: red;
+	}
+</style>
 </head>
 <body>
 	
 	<form>
 	
 		<input id="a" type="number">
+		<!-- A tag "span" do html não gera nenhuma mudança visual na página -->
+		<span id="a-message" class="msgErro"></span>
 		+
 		<input id="b" type="number">
+		<span id="b-message" class="msgErro"></span>
 		=
 		<input id="result" type="number" readonly="readonly">
 		

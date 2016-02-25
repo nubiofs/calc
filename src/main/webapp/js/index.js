@@ -116,6 +116,7 @@ function somar(event){
 //
 //Um controlador para cada tela "front-end html" e
 //Um proxy para cada recurso e seu(s) serviço(s) "disponibilizado no back-end REST"
+/*
 function somar(event){
 	
 	event.preventDefault();
@@ -130,7 +131,74 @@ function somar(event){
 	Calculator.sum(input).done(somaOK);
 	
 };
+*/
+
+//Tratando no front-end os erros gerados pelo back-end
+function somar(event){
+	
+	event.preventDefault();
+	
+	// Acessa todos os elementos rotulados com o CSS Class “required” 
+	//e remover este rótulo
+	$(".required").removeClass("required");
+	
+	//Limpa o conteúdo entre todas as tags <span>
+	$("span").empty();
+	
+	//objeto JavaScript
+	var input = {
+		a : $("#a").val(),
+		b : $("#b").val()
+	};
+	
+	// Chamando, via proxy, o serviço "sum" do recurso Calculador no servidor REST java (back-end).
+	// "fail(somaNotOK)" --> será invocada sempre que o status do response estiver na faixa 
+	//400 (falha causada pelo cliente) ou 500 (falha por erro no servidor).
+	Calculator.sum(input).done(somaOK).fail(somaNotOK);
+	
+};
 
 function somaOK(data){
 	$("#result").val(data);
 };
+
+//O tipo jqXHR representa um response
+function somaNotOK(jqXHR) {
+	
+    if (jqXHR.status == 422) {//Verifica o HTTP status do response
+    	
+    	//JSON.parse --> converte a string do "responseText" em um objeto
+    	/*
+    	"responseText":
+    	 	[
+			  {
+			    "property": "b",
+			    "message": "não pode ser nulo"
+			  },
+			  {
+			    "property": "a",
+			    "message": "não pode ser nulo"
+			  }
+			]
+    	*/
+        var outputArray = JSON.parse(jqXHR.responseText);
+ 
+        //
+        //Apenas com um input por vez
+        //
+        /*
+        var inputId = outputArray[0].property;
+        $("#" + inputId).addClass("required");
+        */
+        
+        //
+        //Com todos os inputs
+        //
+        $.each(outputArray, function(index, value) {
+            $("#" + value.property).addClass("required");
+            $("#" + value.property + "-message").text(value.message);
+        });
+        
+    }
+    
+}
