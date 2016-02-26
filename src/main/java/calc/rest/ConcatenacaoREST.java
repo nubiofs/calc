@@ -1,10 +1,13 @@
 package calc.rest;
 
+
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
+import org.hibernate.validator.constraints.Length;
 
 import br.gov.frameworkdemoiselle.util.ValidatePayload;
 
@@ -32,7 +35,7 @@ public class ConcatenacaoREST {
 
 	public static class Bean {
 
-		@NotNull
+		@Length(min=2)
 		private String texto1;
 
 		@NotNull
