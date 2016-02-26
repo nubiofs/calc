@@ -26,5 +26,7 @@ No eclipse -> Configure -> Convert to Maven Project
 
 (M1C5: HTTP 422) ==> "M1C5"
 
+(Exercício - Módulo 1: Básico) ==> "ExecMod1_Testes"
+
 Obs.: Mudar "???" após terminar o módulo M?C? 
 
